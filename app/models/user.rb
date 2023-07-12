@@ -6,6 +6,6 @@ class User < ApplicationRecord
   has_many :commented_posts, through: :comments, source: :post
 
   def current_posts
-    posts.order(created_at: :desc).limit(3) 
+    posts.order(created_at: :desc).limit(3)
   end
 end
