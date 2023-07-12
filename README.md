@@ -28,7 +28,7 @@
 
 # 📖 Blog_app <a id="about-project"></a>
 
-**Blog_app** is a website that allows users to post a blog, like and comment on a post. 
+**Blog_app** repo is a robust and user-friendly web application designed to empower individuals to express their thoughts and ideas through the creation of engaging blog posts. With an intuitive interface, users can effortlessly compose, edit, and publish their content, reaching a wider audience in an instant.
 
 ## 🛠 Built With <a id="built-with"></a>
 
