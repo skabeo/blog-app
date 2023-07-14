@@ -40,4 +40,23 @@ RSpec.describe Post, type: :model do
     subject.author = nil
     expect(subject).to_not be_valid
   end
+
+  it 'should return a users last 5 comment' do
+    user = User.create(name: 'Spencer Okyere', photo: 'Link to photo', bio: 'Hello World', posts_counter: 10)
+    post = Post.create(title: 'Random title', text: 'Hello, world', author_id: user.id, likes_counter: 0, comment_counter: 0)
+    6.times.collect do
+      Comment.create(
+        author: user,
+        post: post,
+        text: 'Test post',
+      )
+    end
+    expect(post.recent_comments.length).to eq(5)
+  end
+
+  it 'updates the posts_counter attribute of the author' do
+    author = User.create(name: 'John Doe')
+    post = Post.create(title: 'Test Post', author: author) 
+    expect(post.update_post_counter).to be(true)
+  end
 end
