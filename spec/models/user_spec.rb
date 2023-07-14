@@ -23,4 +23,18 @@ RSpec.describe User, type: :model do
   it 'should be valid' do
     expect(subject).to be_valid
   end
+
+  it 'should return a users last 3 posts' do
+    user = User.create(name: 'Spencer Okyere', photo: 'Link to photo', bio: 'Hello World', posts_counter: 10)
+    4.times.collect do
+      Post.create(
+        title: 'Random title',
+        text: 'Hello, world',
+        author_id: user.id,
+        likes_counter: 0,
+        comment_counter: 0
+      )
+    end
+    expect(user.current_posts.length).to eq(3)
+  end
 end
