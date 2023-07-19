@@ -1,1 +1,27 @@
-<h2>Here is a post details of a particular person</h2>
+<%= stylesheet_link_tag 'users/index' %>
+<%= render 'reuse/user_profile', user: @user %>
+
+<% @posts.each_with_index do |post, index| %>
+  <div class='all-posts-container'>
+    <h3>Post <%= index + 1 %></h3>
+    <a href="/users/<%= post.author_id %>/posts/<%= post.id %>">
+      <p class='all-posts-title'><%= post.title %></p>
+    </a>
+    <p><%= post.text %></p>
+    <span class='all-posts-stats'>
+      Comments: <%= post.comment_counter || 0 %>, Likes: <%= post.likes_counter || 0 %>
+    </span>
+  </div>
+    <% if post.recent_comments.any? %>
+      <div class='all-posts-comments'>
+        <% post.recent_comments.each do |comment| %>
+          <p><%= comment.author.name %>: <%= comment.text %></p>
+        <% end %>
+      </div>
+    <% end %>
+<% end %>
+
+<div class='pagination-container'>
+  <button class='pagination-btn'>Pagination</button>       
+</div>
+
