@@ -124,7 +124,7 @@ rails server
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/skabeo/blog-app.git/issues).
+Feel free to check the [issues page](https://github.com/skabeo/blog-app/issues).
 
 If you would like to contribute to this project, you can follow these steps:
 

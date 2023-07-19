@@ -1,1 +1,23 @@
-<h2>Here is a list of post for a user</h2>
+<%= stylesheet_link_tag 'users/index' %>
+<%= render 'reuse/user_profile', user: @user %>
+
+<div class='user-page'>
+  <h3>Bio</h3>
+  <p><%= @user.bio %></p>
+</div>
+
+<% @user.current_posts.each_with_index do |post, index| %>
+  <div class='user-page'>
+    <h3>Post <%= index + 1 %></h3>
+    <p class='post-title'><%= post.title %></p>
+    <p><%= post.text %></p>
+    <span class='stats'>
+      Comments: <%= post.comment_counter || 0 %>, Likes: <%= post.likes_counter || 0 %>
+    </span>
+  </div>
+<% end %>
+
+<div class='post-button-container'>
+  <a href="/users/<%= @user.id %>/posts"><button class='all-posts-button'>See all posts</button></a>
+</div>
+

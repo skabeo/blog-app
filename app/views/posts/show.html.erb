@@ -1,1 +1,17 @@
-<h2>Here is a details of a particular post</h2>
+<div class='each-post-container'>
+  <div class='name-stat-container'>
+    <h4>Post by <%= @post.author.name %></h4>
+    <span class='each-post-stat'>
+      Comments: <%= @post.comment_counter || 0 %>, Likes: <%= @post.likes_counter || 0 %>
+    </span>
+  </div>
+  <p class='each-post-title'><%= @post.title %></p>
+  <p><%= @post.text %></p>
+</div>
+<% if @post.all_comments.any? %>
+  <div class='all-posts-comments'>
+    <% @post.all_comments.each do |comment| %>
+      <p><%= comment.author.name %>: <%= comment.text %></p>
+    <% end %>
+  </div>
+<% end %>
