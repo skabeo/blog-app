@@ -1,1 +1,3 @@
-<h2>Here is a list of users</h2>
+<% @users.each do |user| %>
+  <%= render 'reuse/user_profile', user: user %>
+<% end %>
