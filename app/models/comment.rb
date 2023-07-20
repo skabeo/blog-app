@@ -2,7 +2,11 @@ class Comment < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :post
 
-  def update_comments_counter
-    post.update(comment_counter: post.comments.count)
+  validates :text, presence: true, length: { maximum: 250 }
+
+  after_create :increment_post_comment_counter
+
+  def increment_post_comment_counter
+    post.increment!(:comment_counter)
   end
 end
