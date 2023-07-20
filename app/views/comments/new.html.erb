@@ -1,0 +1,15 @@
+<%= form_with model: @comment, url: create_comment_path(user_id: params[:user_id], id: params[:id]) do |form| %>
+  <div class='post-form-container'>
+    <%= form.label "Comment:"%>
+    <%= form.text_field :text, class: 'title-input', placeholder: "Enter your comment here..." %>
+    <div class='new-post-btn-cont'>
+      <%= form.submit "Create Comment", class: 'new-post-btn' %>
+    </div>
+  </div>
+<% end %>
+
+<% if flash[:error] %>
+  <div class="error-message">
+    <%= flash[:error] %>
+  </div>
+<% end %>
