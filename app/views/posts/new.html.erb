@@ -1,0 +1,19 @@
+<h3 style='text-align: center'>New post</h3>
+
+<%= form_with url: user_posts_path(user_id: params[:user_id]), model: @post do |form| %>
+  <div class='post-form-container'>
+    <%= form.label 'Title:' %>
+    <%= form.text_field :title, class: 'title-input', placeholder: "Enter your post title here..." %>
+    <%= form.label 'Text:' %>
+    <%= form.text_area :text, class: 'text-input', placeholder: "Enter your blog post here..." %>
+    <div class='new-post-btn-cont'>
+      <%= form.submit "Create Post", class: 'new-post-btn' %>
+    </div>
+  </div>
+<% end %>
+
+<% if flash[:error] %>
+  <div class="error-message">
+    <%= flash[:error] %>
+  </div>
+<% end %>
