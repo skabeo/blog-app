@@ -1,4 +1,11 @@
-<div class='each-post-container'>
+<% if flash[:success] %>
+  <div class="flash-message success">
+    <%= flash[:success] %>
+  </div>
+<% end %>
+
+<div class='post-details-cont'>
+  <div class='each-post-container'>
   <div class='name-stat-container'>
     <h4>Post by <%= @post.author.name %></h4>
     <span class='each-post-stat'>
@@ -7,11 +14,19 @@
   </div>
   <p class='each-post-title'><%= @post.title %></p>
   <p><%= @post.text %></p>
-</div>
-<% if @post.all_comments.any? %>
-  <div class='all-posts-comments'>
-    <% @post.all_comments.each do |comment| %>
-      <p><%= comment.author.name %>: <%= comment.text %></p>
-    <% end %>
   </div>
-<% end %>
+  <%= form_with model: @like, url: user_post_likes_create_path(user_id: @post.author_id, id: @post.id) do |form| %>
+    <%= form.submit "Like", class: 'like-button' %>
+  <% end %>
+  <% if @post.all_comments.any? %>
+    <div class='all-posts-comments2'>
+      <% @post.all_comments.each do |comment| %>
+        <p><%= comment.author.name %>: <%= comment.text %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<a href="<%= user_comment_new_path(user_id: @post.author_id, id: @post.id) %>">
+  <button class='pagination-btn add-comment'>Add a comment</button>
+</a>

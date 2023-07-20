@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :likes, foreign_key: :post_id
 
   validates :title, presence: true, length: { maximum: 250 }
+  validates :text, presence: true, length: { maximum: 250 }
   validates :comment_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :likes_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
@@ -17,5 +18,9 @@ class Post < ApplicationRecord
 
   def all_comments
     comments.order(created_at: :asc)
+  end
+
+  def update_likes_counter
+    update(likes_counter: likes.where(post_id: id).count)
   end
 end
