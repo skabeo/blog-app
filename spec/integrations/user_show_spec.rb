@@ -4,7 +4,7 @@ RSpec.describe 'user show page', type: :feature do
   scenario 'visible profile picture' do
     user = User.create(name: 'Spencer', posts_counter: 5)
     visit user_show_path(user.id)
-    expect(page).to have_css("img.user-img")
+    expect(page).to have_css('img.user-img')
   end
 
   scenario 'visible username' do
@@ -28,9 +28,12 @@ RSpec.describe 'user show page', type: :feature do
   scenario "displays the user's first 3 posts" do
     user = User.create(name: 'Spencer', bio: 'I\'m him', posts_counter: 5)
 
-    post1 = Post.create(author_id: user.id, title: 'Greetings', text: 'Hello world', likes_counter: 5, comment_counter: 4)
-    post2 = Post.create(author_id: user.id, title: 'Music', text: 'Rap is the goat of genre', likes_counter: 5, comment_counter: 4)
-    post3 = Post.create(author_id: user.id, title: 'Fan fact', text: 'Your thigh bone is stonger than concreate',  likes_counter: 5, comment_counter: 4)
+    Post.create(author_id: user.id, title: 'Greetings', text: 'Hello world', likes_counter: 5,
+                comment_counter: 4)
+    Post.create(author_id: user.id, title: 'Music', text: 'Rap is the goat of genre', likes_counter: 5,
+                comment_counter: 4)
+    Post.create(author_id: user.id, title: 'Fan fact', text: 'Your thigh bone is stonger than concreate',
+                likes_counter: 5, comment_counter: 4)
 
     visit user_show_path(user.id)
 
@@ -52,7 +55,8 @@ RSpec.describe 'user show page', type: :feature do
 
   scenario 'redirects to post show page' do
     user = User.create(name: 'Spencer', bio: 'I\'m him', posts_counter: 5)
-    post1 = Post.create(author_id: user.id, title: 'Greetings', text: 'Hello world', likes_counter: 5, comment_counter: 4)
+    post1 = Post.create(author_id: user.id, title: 'Greetings', text: 'Hello world', likes_counter: 5,
+                        comment_counter: 4)
     visit user_show_path(user.id)
     click_on 'Greetings'
     expect(page).to have_current_path(user_post_details_path(user_id: user.id, id: post1.id))
