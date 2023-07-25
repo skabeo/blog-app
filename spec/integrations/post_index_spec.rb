@@ -34,26 +34,26 @@ RSpec.feature 'User Post Index', type: :feature do
     end
   end
 
-  scenario "I can see how many comments a post has" do
+  scenario 'I can see how many comments a post has' do
     visit user_post_path(@user.id)
     @user.posts.each do |post|
       expect(page).to have_content("Comments: #{post.comments.count}")
     end
   end
 
-  scenario "I can see how many likes a post has" do
+  scenario 'I can see how many likes a post has' do
     visit user_post_path(@user.id)
     @user.posts.each do |post|
       expect(page).to have_content("Likes: #{post.likes.count}")
     end
   end
 
-  scenario "Can see Add a post button" do
+  scenario 'Can see Add a post button' do
     visit user_post_path(@user.id)
     expect(page).to have_button(text: 'Add a post')
   end
 
-  scenario "should redirect me to post show page" do
+  scenario 'should redirect me to post show page' do
     visit user_post_path(@user.id)
     @user.posts.each do |post|
       find('a', text: post.title).click
