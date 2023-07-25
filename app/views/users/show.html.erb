@@ -9,7 +9,9 @@
 <% @user.current_posts.each_with_index do |post, index| %>
   <div class='user-page'>
     <h3>Post <%= index + 1 %></h3>
-    <p class='post-title'><%= post.title %></p>
+    <a href="/users/<%= post.author_id %>/posts/<%= post.id %>">
+      <p class='post-title'><%= post.title %></p>
+    </a>
     <p><%= post.text %></p>
     <span class='stats'>
       Comments: <%= post.comment_counter || 0 %>, Likes: <%= post.likes_counter || 0 %>
