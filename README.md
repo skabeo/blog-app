@@ -102,13 +102,18 @@ rails server
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 👥 Author <a id="authors"></a>
+## 👥 Authors <a id="authors"></a>
 
 👤 **Spencer Okyere**
 
 - GitHub: [@skabeo](https://github.com/skabeo)
 - Twitter: [@black_okyere](https://twitter.com/black_okyere)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/spencer-okyere)
+
+👤 **Ikenna Richard**
+
+- GitHub: [ikennarichard](https://github.com/ikennarichard)
+- LinkedIn: [ikenna_richard](https://linkedin.com/in/ikenna_richard)
 
 
 
