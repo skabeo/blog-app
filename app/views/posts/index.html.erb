@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'users/index' %>
 <%= render 'reuse/user_profile', user: @user %>
 
-<% @posts.each_with_index do |post, index| %>
+<% @posts.includes(:comments).each_with_index do |post, index| %>
   <div class='all-posts-container'>
     <h3>Post <%= index + 1 %></h3>
     <a href="/users/<%= post.author_id %>/posts/<%= post.id %>">
