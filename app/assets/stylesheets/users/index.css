@@ -253,3 +253,9 @@ a {
   box-sizing: border-box;
   margin-top: 1px;
 }
+
+/* sign-up styles */
+
+.center-text {
+  text-align: center;
+}
