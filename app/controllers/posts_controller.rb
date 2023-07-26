@@ -21,12 +21,23 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:success] = 'Your post was sent'
-      @post.update_post_counter
       redirect_to users_path
     else
       flash.now[:error] = @post.errors.full_messages.join('<br>').html_safe
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    authorize! :destroy, @post
+
+    if @post.destroy
+      flash[:success] = 'Post successfully deleted.'
+    else
+      flash[:error] = 'Failed to delete the post.'
+    end
+    redirect_to user_post_path(@post.author_id)
   end
 
   private
