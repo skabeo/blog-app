@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   get "users/:user_id/posts/:id/comments/new", to: "comments#new", as: "user_comment_new"
   post "users/:user_id/posts/:id/comments/create", to: "comments#create", as: "create_comment"
   post "users/:user_id/posts/:id/likes/create", to: "likes#create", as: "user_post_likes_create"
+
+  resources :posts
 end
