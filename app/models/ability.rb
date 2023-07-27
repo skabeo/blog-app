@@ -8,16 +8,13 @@ class Ability
     return unless user.present?
 
     can(:read, Post, user:)
-    can :destroy, Post.where(author_id: user.id)
+    can :destroy, Post, author: user
 
     can(:read, Comment, user:)
-    can :destroy, Comment.where(author_id: user.id)
+    can :destroy, Comment, author: user
 
     return unless user.role == 'admin'
 
-    can(:read, Comment, user:)
-    # can :destroy, Comment.where(author_id: user.id)
-    can :destroy, Post
-    can :destroy, Comment
+    can :manage, :all
   end
 end
