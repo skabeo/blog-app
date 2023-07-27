@@ -19,7 +19,16 @@
   </div>
 <% end %>
 
-<div class='post-button-container'>
-  <a href="/users/<%= @user.id %>/posts"><button class='all-posts-button'>See all posts</button></a>
-</div>
+<% if @user.posts.size < 4 %>
+  <%= render partial: 'reuse/add_post', locals: { user: @user } %>
+<% end %>
+
+<% if @user.posts.size > 3 %>
+    <!-- Show "See All Posts" button when the user has more than three posts -->
+  <div class='post-button-container'>
+    <a href="/users/<%= @user.id %>/posts">
+      <button class='all-posts-button'>See all posts</button>
+    </a>
+  </div>
+<% end %>
 

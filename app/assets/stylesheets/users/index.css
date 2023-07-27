@@ -259,3 +259,8 @@ a {
 .center-text {
   text-align: center;
 }
+
+.interaction-container {
+  display: flex;
+  gap: 10px;
+}

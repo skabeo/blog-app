@@ -15,13 +15,22 @@
   <p class='each-post-title'><%= @post.title %></p>
   <p><%= @post.text %></p>
   </div>
-  <%= form_with model: @like, url: user_post_likes_create_path(user_id: @post.author_id, id: @post.id) do |form| %>
-    <%= form.submit "Like", class: 'like-button' %>
-  <% end %>
+  <div class='interaction-container'>
+    <%= form_with model: @like, url: user_post_likes_create_path(user_id: @post.author_id, id: @post.id) do |form| %>
+      <%= form.submit "Like", class: 'like-button' %>
+    <% end %>
+    <% if can?(:destroy, @post) %>
+      <%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure you want to delete this post?" }, class: 'like-button' %>
+    <% end %>
+  </div>
+  
   <% if @post.all_comments.any? %>
     <div class='all-posts-comments2'>
       <% @post.all_comments.each do |comment| %>
         <p><%= comment.author.name %>: <%= comment.text %></p>
+        <% if can?(:destroy, comment) %>
+          <%= button_to "Delete comment", post_comment_path(@post, comment), method: :delete,  params: { comment_id: comment.id }, data: { confirm: "Are you sure you want to delete this post?" }, class: 'like-button' %>
+        <% end %>
       <% end %>
     </div>
   <% end %>

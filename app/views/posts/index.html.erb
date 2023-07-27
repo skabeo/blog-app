@@ -1,6 +1,20 @@
 <%= stylesheet_link_tag 'users/index' %>
 <%= render 'reuse/user_profile', user: @user %>
 
+<% if flash[:success] %>
+  <div class="flash-message success">
+    <%= flash[:success] %>
+  </div>
+<% elsif flash[:error] %>
+  <div class="flash-message error">
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
+<% if @posts.empty? %>
+  <h4 class='center-text'>No post yet</h4>
+<% end %>
+
 <% @posts.includes(:comments).each_with_index do |post, index| %>
   <div class='all-posts-container'>
     <h3>Post <%= index + 1 %></h3>
