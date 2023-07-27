@@ -24,7 +24,12 @@ class CommentsController < ApplicationController
       flash[:success] = 'Comment deleted.'
     else
       flash[:error] = 'Failed to delete the comment.'
-    end
+    
+    # if @comment.destroy
+    #   flash[:success] = "Comment deleted."
+    # else
+    #   flash[:error] = "Failed to delete the comment."
+    # end
 
     redirect_to user_post_details_path(user_id: @post.author_id, id: @post.id)
   end
