@@ -1,4 +1,6 @@
-class Api::CommentsController < ApplicationController
+class Api::CommentsController < 
+  skip_before_action :verify_authenticity_token, if: -> { request.format.json? }
+
   def index
     user = User.find(params[:user_id])
     post = user.posts.find(params[:post_id])
@@ -8,8 +10,9 @@ class Api::CommentsController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
+    user = User.find(params[:user_id])
     comment = post.comments.build(comment_params)
-    comment.author_id = current_user.id
+    comment.author_id = user.id
 
     if comment.save
       render json: comment, status: :created
