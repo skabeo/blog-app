@@ -20,4 +20,14 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create, :destroy]
   end
+
+  # api endpoints
+  namespace :api do
+    resources :users, only: [:index] do
+      resources :posts, only: [:show] do
+        resources :comments, only: [:index]
+      end
+    end
+  end
+  
 end
