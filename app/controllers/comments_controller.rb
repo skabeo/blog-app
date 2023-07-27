@@ -20,11 +20,11 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:comment_id])
     @post = @comment.post
     authorize! :destroy, @comment
-    
+
     if @comment.destroy
-      flash[:success] = "Comment deleted."
+      flash[:success] = 'Comment deleted.'
     else
-      flash[:error] = "Failed to delete the comment."
+      flash[:error] = 'Failed to delete the comment.'
     end
 
     redirect_to user_post_details_path(user_id: @post.author_id, id: @post.id)
