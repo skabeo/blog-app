@@ -1,6 +1,5 @@
-class Api::CommentsController < 
+class Api::CommentsController <
   skip_before_action :verify_authenticity_token, if: -> { request.format.json? }
-
   def index
     user = User.find(params[:user_id])
     post = user.posts.find(params[:post_id])
