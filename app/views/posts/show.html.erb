@@ -28,6 +28,9 @@
     <div class='all-posts-comments2'>
       <% @post.all_comments.each do |comment| %>
         <p><%= comment.author.name %>: <%= comment.text %></p>
+        <% if can?(:destroy, comment) %>
+   <%= button_to "Delete comment", post_comment_path(@post, comment), method: :delete,  params: { comment_id: comment.id }, data: { confirm: "Are you sure you want to delete this post?" }, class: 'like-button' %>
+<% end %>
       <% end %>
     </div>
   <% end %>
