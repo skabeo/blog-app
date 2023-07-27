@@ -18,7 +18,6 @@ class Ability
     can(:read, Comment, user:)
     # can :destroy, Comment.where(author_id: user.id)
     can :destroy, Post
-
     can :destroy, Comment
   end
 end
