@@ -21,13 +21,11 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
-  # api endpoints
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
     resources :users, only: [:index] do
       resources :posts, only: [:show] do
-        resources :comments, only: [:index]
+        resources :comments, only: [:index, :create]
       end
     end
   end
-  
 end
